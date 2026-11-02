@@ -1,0 +1,205 @@
+
+.home-page {
+  --home-bg: #071610;
+  --home-panel: #10271f;
+  --home-gold: #e9bd68;
+  --home-muted: #9db2a1;
+
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 0%, #183e2b55, transparent 48%),
+    var(--home-bg);
+  color: #f5f2e9;
+}
+
+.home-header {
+  min-height: 82px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #0b2118ee;
+  border-bottom: 1px solid #ffffff17;
+}
+
+.home-brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.home-brand-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #d6b45e18;
+  border: 1px solid #d6b45e55;
+  font-size: 25px;
+}
+
+.home-brand h1 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 900;
+}
+
+.home-brand span {
+  display: block;
+  margin-top: 5px;
+  color: var(--home-gold);
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.home-header-right {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--home-gold);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.home-content {
+  width: min(1280px, 92%);
+  margin: 0 auto;
+  padding: 42px 0 55px;
+}
+
+.home-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.home-title > div > span {
+  color: var(--home-gold);
+  font-size: 10px;
+  letter-spacing: 3px;
+  font-weight: 800;
+}
+
+.home-title h2 {
+  margin: 9px 0 0;
+  font-size: clamp(25px, 4vw, 38px);
+  letter-spacing: 1px;
+  line-height: 1.15;
+}
+
+.home-stadium-section {
+  margin-top: 38px;
+}
+
+.home-players {
+  margin-top: 42px;
+}
+
+.home-gameplay {
+  margin-top: 38px;
+}
+
+.home-content > .match-commentary {
+  margin-top: 30px;
+}
+
+.home-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 17px;
+}
+
+.home-section-heading h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.home-section-heading span {
+  color: var(--home-muted);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+.home-camera-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.home-footer {
+  min-height: 75px;
+  padding: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  border-top: 1px solid #ffffff15;
+  color: #9caf9f;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.home-footer span {
+  color: var(--home-gold);
+  padding: 0 10px;
+}
+
+@media (max-width: 650px) {
+  .home-header {
+    min-height: 72px;
+    padding: 0 4%;
+  }
+
+  .home-header-right {
+    display: none;
+  }
+
+  .home-brand h1 {
+    font-size: 15px;
+  }
+
+  .home-content {
+    width: 92%;
+    padding: 28px 0 38px;
+  }
+
+  .home-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 17px;
+  }
+
+  .home-stadium-section {
+    margin-top: 30px;
+  }
+
+  .home-players,
+  .home-gameplay {
+    margin-top: 32px;
+  }
+
+  .home-camera-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .home-section-heading span {
+    font-size: 8px;
+  }
+
+  .home-footer {
+    font-size: 8px;
+    line-height: 1.8;
+  }
+}

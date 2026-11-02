@@ -1,0 +1,303 @@
+===== APP JSX =====
+
+import Home from "./pages/Home/Home";
+
+export default function App() {
+  return <Home />;
+}
+
+===== HOME JSX =====
+
+import { useCallback, useState } from "react";
+import { ShieldCheck } from "lucide-react";
+
+import PlayerSetup from "../../components/players/PlayerSetup/PlayerSetup";
+import StadiumScene from "../../components/stadium/StadiumScene/StadiumScene";
+import Scoreboard from "../../components/scoreboard/Scoreboard/Scoreboard";
+import PlayerCamera from "../../components/camera/PlayerCamera/PlayerCamera";
+import MatchStatus from "../../components/game/MatchStatus/MatchStatus";
+import MatchCommentary from "../../components/game/MatchCommentary/MatchCommentary";
+import MatchControls from "../../components/game/MatchControls/MatchControls";
+import BallResult from "../../components/game/BallResult/BallResult";
+
+import {
+  createInitialMatch,
+  playBall,
+  startSecondInnings,
+  getBallResult,
+} from "../../services/game/handCricketEngine";
+
+import "./Home.css";
+
+export default function Home() {
+  const [match, setMatch] = useState(null);
+  const [ballResult, setBallResult] = useState(null);
+  const [resultVisible, setResultVisible] = useState(false);
+
+  const handleStartMatch = (players) => {
+    setMatch(createInitialMatch(players));
+    setBallResult(null);
+    setResultVisible(false);
+  };
+
+  const handlePlayBall = (batsmanNumber, bowlerNumber) => {
+    if (!match || match.status !== "playing") return;
+
+    try {
+      const updatedMatch = playBall(
+        match,
+        batsmanNumber,
+        bowlerNumber
+      );
+
+      setMatch(updatedMatch);
+      setBallResult(getBallResult(updatedMatch.lastBall));
+      setResultVisible(true);
+    } catch (error) {
+      console.error("Gameplay error:", error.message);
+    }
+  };
+
+  const handleStartSecondInnings = () => {
+    setMatch((currentMatch) => {
+      if (!currentMatch) return currentMatch;
+      return startSecondInnings(currentMatch);
+    });
+  };
+
+  const handleReset = () => {
+    setMatch(null);
+    setBallResult(null);
+    setResultVisible(false);
+  };
+
+  const handleResultComplete = useCallback(() => {
+    setResultVisible(false);
+  }, []);
+
+  if (!match) {
+    return <PlayerSetup onStart={handleStartMatch} />;
+  }
+
+  const battingPlayer = match.players[match.battingPlayerId];
+  const bowlingPlayer = match.players[match.bowlingPlayerId];
+
+  return (
+    <main className="home-page">
+      <header className="home-header">
+        <div className="home-brand">
+          <div className="home-brand-icon">🏏</div>
+
+          <div>
+            <h1>HAND CRICKET</h1>
+            <span>THE DIGITAL CRICKET ARENA</span>
+          </div>
+        </div>
+
+        <div className="home-header-right">
+          <ShieldCheck size={17} />
+          <span>STADIUM EXPERIENCE</span>
+        </div>
+      </header>
+
+      <div className="home-content">
+        <div className="home-title">
+          <div>
+            <span>WELCOME TO THE ARENA</span>
+            <h2>LET THE GAME BEGIN.</h2>
+          </div>
+
+          <MatchStatus status={match.status} />
+        </div>
+
+        <Scoreboard match={match} />
+
+        <section className="home-stadium-section">
+          <div className="home-section-heading">
+            <h3>THE CRICKET GROUND</h3>
+            <span>MAIN STADIUM VIEW</span>
+          </div>
+
+          <StadiumScene
+            players={match.players}
+            matchState={match}
+          />
+        </section>
+
+        <section className="home-players">
+          <div className="home-section-heading">
+            <h3>PLAYERS</h3>
+            <span>CAMERA CONNECTIONS</span>
+          </div>
+
+          <div className="home-camera-grid">
+            <PlayerCamera
+              player={battingPlayer.name}
+              role={`${battingPlayer.team} · Batsman`}
+            />
+
+            <PlayerCamera
+              player={bowlingPlayer.name}
+              role={`${bowlingPlayer.team} · Bowler`}
+            />
+          </div>
+        </section>
+
+        <section className="home-gameplay">
+          <div className="home-section-heading">
+            <h3>PLAY THE GAME</h3>
+            <span>MANUAL TEST MODE</span>
+          </div>
+
+          <MatchControls
+            match={match}
+            onPlayBall={handlePlayBall}
+            onStartSecondInnings={handleStartSecondInnings}
+            onReset={handleReset}
+          />
+        </section>
+
+        <MatchCommentary match={match} />
+      </div>
+
+      <footer className="home-footer">
+        HAND CRICKET ARENA
+        <span>•</span>
+        MADE FOR THE LOVE OF CRICKET
+      </footer>
+
+      <BallResult
+        result={ballResult}
+        visible={resultVisible}
+        onComplete={handleResultComplete}
+      />
+    </main>
+  );
+}
+
+===== ROOM SETUP JSX =====
+
+===== MULTIPLAYER HOOK =====
+
+===== PLAYER SETUP JSX =====
+
+import { useState } from "react";
+import { Shield, Users, ArrowRight, Trophy } from "lucide-react";
+import "./PlayerSetup.css";
+
+export default function PlayerSetup({ onStart }) {
+  const [players, setPlayers] = useState([
+    { name: "", team: "" },
+    { name: "", team: "" },
+  ]);
+
+  const updatePlayer = (index, field, value) => {
+    setPlayers((current) =>
+      current.map((player, i) =>
+        i === index ? { ...player, [field]: value } : player
+      )
+    );
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (players.some((player) => !player.name.trim() || !player.team.trim())) {
+      return;
+    }
+
+    onStart({
+      player1: { ...players[0], role: "Batsman" },
+      player2: { ...players[1], role: "Bowler" },
+    });
+  };
+
+  return (
+    <main className="player-setup">
+      <div className="setup-background">
+        <div className="setup-light setup-light-left" />
+        <div className="setup-light setup-light-right" />
+        <div className="setup-field">
+          <div className="setup-field-circle" />
+        </div>
+      </div>
+
+      <form className="setup-content" onSubmit={handleSubmit}>
+        <div className="setup-brand">
+          <div className="setup-brand-icon">🏏</div>
+          <span>HAND CRICKET ARENA</span>
+        </div>
+
+        <div className="setup-heading">
+          <span className="setup-eyebrow">YOUR MATCH STARTS HERE</span>
+          <h1>MEET THE PLAYERS.</h1>
+          <p>Enter your player and team details before entering the stadium.</p>
+        </div>
+
+        <div className="setup-player-grid">
+          {players.map((player, index) => (
+            <section className={`setup-player-card setup-player-${index + 1}`} key={index}>
+              <div className="setup-player-heading">
+                <div className="setup-player-number">
+                  <Users size={21} />
+                </div>
+                <div>
+                  <span>PLAYER {String(index + 1).padStart(2, "0")}</span>
+                  <h2>{index === 0 ? "Batsman" : "Bowler"}</h2>
+                </div>
+                <span className="setup-role-number">
+                  {index === 0 ? "01" : "02"}
+                </span>
+              </div>
+
+              <div className="setup-field-group">
+                <label htmlFor={`player-name-${index}`}>PLAYER NAME</label>
+                <input
+                  id={`player-name-${index}`}
+                  type="text"
+                  placeholder="Enter player name"
+                  maxLength={30}
+                  value={player.name}
+                  onChange={(event) =>
+                    updatePlayer(index, "name", event.target.value)
+                  }
+                  required
+                />
+              </div>
+
+              <div className="setup-field-group">
+                <label htmlFor={`team-name-${index}`}>TEAM NAME</label>
+                <input
+                  id={`team-name-${index}`}
+                  type="text"
+                  placeholder="Enter team name"
+                  maxLength={30}
+                  value={player.team}
+                  onChange={(event) =>
+                    updatePlayer(index, "team", event.target.value)
+                  }
+                  required
+                />
+              </div>
+            </section>
+          ))}
+        </div>
+
+        <div className="setup-match-note">
+          <Shield size={17} />
+          <span>Two players. One pitch. One champion.</span>
+        </div>
+
+        <button className="setup-start-button" type="submit">
+          <Trophy size={19} />
+          ENTER THE STADIUM
+          <ArrowRight size={19} />
+        </button>
+
+        <p className="setup-footer">
+          GET READY TO PLAY · THE ARENA IS WAITING
+        </p>
+      </form>
+    </main>
+  );
+}

@@ -1,0 +1,99 @@
+
+.player-camera {
+  overflow: hidden;
+  background: #10271f;
+  border: 1px solid #ffffff25;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px #0003;
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.player-camera:hover {
+  border-color: #d9b96780;
+  transform: translateY(-3px);
+}
+
+.player-camera-preview {
+  position: relative;
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  overflow: hidden;
+  color: #c5d8c8;
+  background:
+    radial-gradient(ellipse at 50% 100%, #4a805c55, transparent 65%),
+    linear-gradient(145deg, #294c39, #142d20);
+}
+
+.player-camera-preview::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 30px,
+    #ffffff15 30px 31px
+  );
+}
+
+.player-camera-preview svg,
+.player-camera-preview span,
+.player-camera-preview small {
+  position: relative;
+  z-index: 1;
+}
+
+.player-camera-preview span {
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 800;
+}
+
+.player-camera-preview small {
+  color: #a6c1ac;
+  font-size: 11px;
+}
+
+.player-camera-info {
+  min-height: 68px;
+  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #0d241a;
+  color: white;
+}
+
+.player-camera-info div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.player-camera-info strong {
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.player-camera-info span {
+  color: #edc46e;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.player-camera-info > svg {
+  color: #c3d3c5;
+}
+
+@media (max-width: 650px) {
+  .player-camera-preview {
+    min-height: 190px;
+  }
+}

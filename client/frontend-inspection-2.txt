@@ -1,0 +1,360 @@
+===== PLAYER CAMERA =====
+
+import { Camera, UserRound } from "lucide-react";
+import "./PlayerCamera.css";
+
+export default function PlayerCamera({ player, role }) {
+  return (
+    <section className="player-camera">
+      <div className="player-camera-preview">
+        <UserRound size={42} />
+        <span>CAMERA PREVIEW</span>
+        <small>Camera not connected</small>
+      </div>
+
+      <div className="player-camera-info">
+        <div>
+          <strong>{player}</strong>
+          <span>{role}</span>
+        </div>
+        <Camera size={19} />
+      </div>
+    </section>
+  );
+}
+
+===== PLAYER CAMERA CSS =====
+
+.player-camera {
+  overflow: hidden;
+  background: #10271f;
+  border: 1px solid #ffffff25;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px #0003;
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.player-camera:hover {
+  border-color: #d9b96780;
+  transform: translateY(-3px);
+}
+
+.player-camera-preview {
+  position: relative;
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  overflow: hidden;
+  color: #c5d8c8;
+  background:
+    radial-gradient(ellipse at 50% 100%, #4a805c55, transparent 65%),
+    linear-gradient(145deg, #294c39, #142d20);
+}
+
+.player-camera-preview::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 30px,
+    #ffffff15 30px 31px
+  );
+}
+
+.player-camera-preview svg,
+.player-camera-preview span,
+.player-camera-preview small {
+  position: relative;
+  z-index: 1;
+}
+
+.player-camera-preview span {
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 800;
+}
+
+.player-camera-preview small {
+  color: #a6c1ac;
+  font-size: 11px;
+}
+
+.player-camera-info {
+  min-height: 68px;
+  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #0d241a;
+  color: white;
+}
+
+.player-camera-info div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.player-camera-info strong {
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.player-camera-info span {
+  color: #edc46e;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.player-camera-info > svg {
+  color: #c3d3c5;
+}
+
+@media (max-width: 650px) {
+  .player-camera-preview {
+    min-height: 190px;
+  }
+}
+
+===== HOME CSS =====
+
+.home-page {
+  --home-bg: #071610;
+  --home-panel: #10271f;
+  --home-gold: #e9bd68;
+  --home-muted: #9db2a1;
+
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 0%, #183e2b55, transparent 48%),
+    var(--home-bg);
+  color: #f5f2e9;
+}
+
+.home-header {
+  min-height: 82px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #0b2118ee;
+  border-bottom: 1px solid #ffffff17;
+}
+
+.home-brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.home-brand-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #d6b45e18;
+  border: 1px solid #d6b45e55;
+  font-size: 25px;
+}
+
+.home-brand h1 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 900;
+}
+
+.home-brand span {
+  display: block;
+  margin-top: 5px;
+  color: var(--home-gold);
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.home-header-right {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--home-gold);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.home-content {
+  width: min(1280px, 92%);
+  margin: 0 auto;
+  padding: 42px 0 55px;
+}
+
+.home-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.home-title > div > span {
+  color: var(--home-gold);
+  font-size: 10px;
+  letter-spacing: 3px;
+  font-weight: 800;
+}
+
+.home-title h2 {
+  margin: 9px 0 0;
+  font-size: clamp(25px, 4vw, 38px);
+  letter-spacing: 1px;
+  line-height: 1.15;
+}
+
+.home-stadium-section {
+  margin-top: 38px;
+}
+
+.home-players {
+  margin-top: 42px;
+}
+
+.home-gameplay {
+  margin-top: 38px;
+}
+
+.home-content > .match-commentary {
+  margin-top: 30px;
+}
+
+.home-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 17px;
+}
+
+.home-section-heading h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.home-section-heading span {
+  color: var(--home-muted);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+.home-camera-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.home-footer {
+  min-height: 75px;
+  padding: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  border-top: 1px solid #ffffff15;
+  color: #9caf9f;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.home-footer span {
+  color: var(--home-gold);
+  padding: 0 10px;
+}
+
+@media (max-width: 650px) {
+  .home-header {
+    min-height: 72px;
+    padding: 0 4%;
+  }
+
+  .home-header-right {
+    display: none;
+  }
+
+  .home-brand h1 {
+    font-size: 15px;
+  }
+
+  .home-content {
+    width: 92%;
+    padding: 28px 0 38px;
+  }
+
+  .home-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 17px;
+  }
+
+  .home-stadium-section {
+    margin-top: 30px;
+  }
+
+  .home-players,
+  .home-gameplay {
+    margin-top: 32px;
+  }
+
+  .home-camera-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .home-section-heading span {
+    font-size: 8px;
+  }
+
+  .home-footer {
+    font-size: 8px;
+    line-height: 1.8;
+  }
+}
+
+===== ROOM SETUP CSS =====
+
+===== PACKAGE JSON =====
+{
+  "name": "client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "oxlint",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lucide-react": "^1.66.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "oxlint": "^1.89.0",
+    "vite": "^8.3.5"
+  }
+}

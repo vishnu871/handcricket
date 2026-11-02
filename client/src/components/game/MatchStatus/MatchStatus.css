@@ -1,0 +1,22 @@
+
+.match-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px;
+  border: 1px solid #d6b45e50;
+  border-radius: 10px;
+  background: #d6b45e12;
+  color: #e7c87e;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.match-status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d6b45e;
+}

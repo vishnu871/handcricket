@@ -1,0 +1,172 @@
+
+.pitch-players {
+  position: absolute;
+  z-index: 8;
+  inset: 0;
+  pointer-events: none;
+}
+
+.pitch-player {
+  position: absolute;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  transform: translateX(-50%);
+}
+
+.pitch-player-bowler {
+  top: 20%;
+}
+
+.pitch-player-striker {
+  bottom: 25%;
+  flex-direction: row-reverse;
+}
+
+.pitch-player-label {
+  min-width: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 9px 12px;
+  border: 1px solid #ffffff35;
+  border-radius: 9px;
+  background: #092419eF;
+  box-shadow: 0 5px 15px #0005;
+  color: white;
+}
+
+.pitch-player-label strong {
+  font-size: 12px;
+}
+
+.pitch-player-label span {
+  color: #f1ce79;
+  font-size: 10px;
+}
+
+.pitch-player-label small {
+  color: #c1d1c3;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.pitch-player-character {
+  position: relative;
+  width: 42px;
+  height: 85px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 5px 3px #0005);
+}
+
+.pitch-player-head {
+  z-index: 2;
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #f4e0b1;
+  border-radius: 50%;
+  background: #e5b88d;
+  color: #4c3022;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.pitch-player-body {
+  position: relative;
+  width: 32px;
+  height: 35px;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 4px;
+  border-radius: 9px 9px 5px 5px;
+  background: #e7e8df;
+}
+
+.pitch-player-body span {
+  width: 5px;
+  height: 19px;
+  border-radius: 5px;
+  background: #e7b58b;
+}
+
+.pitch-player-legs {
+  display: flex;
+  gap: 6px;
+}
+
+.pitch-player-legs i {
+  width: 8px;
+  height: 23px;
+  border-radius: 3px;
+  background: #273b5d;
+}
+
+.pitch-player-bat {
+  position: absolute;
+  z-index: 3;
+  right: -9px;
+  bottom: 7px;
+  width: 5px;
+  height: 43px;
+  transform: rotate(-25deg);
+  border: 1px solid #88663c;
+  border-radius: 3px;
+  background: #dfc08a;
+}
+
+.pitch-character-bowler .pitch-player-body {
+  background: #4c83cf;
+}
+
+.pitch-character-bowler .pitch-player-legs i {
+  background: #233d65;
+}
+
+.pitch-character-striker .pitch-player-body {
+  background: #d9e4dc;
+}
+
+.pitch-player-center-label {
+  position: absolute;
+  top: 49%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #102b1c;
+  border: 1px solid #f0d38b;
+  color: #f0d38b;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+@media (max-width: 650px) {
+  .pitch-player {
+    gap: 5px;
+  }
+
+  .pitch-player-label {
+    min-width: 85px;
+    padding: 7px;
+  }
+
+  .pitch-player-label strong {
+    font-size: 10px;
+  }
+
+  .pitch-player-label span {
+    font-size: 8px;
+  }
+
+  .pitch-player-character {
+    transform: scale(0.85);
+  }
+}

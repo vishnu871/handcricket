@@ -1,0 +1,159 @@
+
+.ball-result {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 20px;
+  animation: ball-result-fade-in 250ms ease both;
+}
+
+.ball-result-backdrop {
+  position: absolute;
+  inset: 0;
+  background: #020b07eF;
+  backdrop-filter: blur(9px);
+}
+
+.ball-result-content {
+  position: relative;
+  z-index: 1;
+  width: min(440px, 100%);
+  padding: 38px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #ffffff35;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #193e2b, #0b2016);
+  box-shadow: 0 25px 90px #0008;
+  animation: ball-result-pop 450ms cubic-bezier(.2, 1.4, .4, 1) both;
+}
+
+.ball-result-icon {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #f2d17c;
+  background: #f2d17c18;
+  border: 1px solid #f2d17c65;
+}
+
+.ball-result-overline {
+  margin-top: 23px;
+  color: #a9c2af;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 4px;
+}
+
+.ball-result-value {
+  margin-top: 12px;
+  color: #f3d17a;
+  font-size: clamp(76px, 18vw, 110px);
+  font-weight: 1000;
+  line-height: 1;
+  text-shadow: 0 8px 35px #edc46f55;
+  animation: ball-result-number 650ms ease both;
+}
+
+.ball-result-content h2 {
+  margin: 16px 0 0;
+  color: #fff;
+  font-size: clamp(24px, 6vw, 34px);
+  font-weight: 1000;
+  letter-spacing: 2px;
+}
+
+.ball-result-content p {
+  margin: 12px 0 0;
+  color: #b8cbbd;
+  font-size: 13px;
+}
+
+.ball-result-decoration {
+  display: flex;
+  gap: 8px;
+  margin-top: 27px;
+}
+
+.ball-result-decoration span {
+  width: 24px;
+  height: 4px;
+  border-radius: 10px;
+  background: #edc46f;
+}
+
+.ball-result-four .ball-result-content,
+.ball-result-six .ball-result-content {
+  border-color: #f3d17c80;
+}
+
+.ball-result-six .ball-result-value {
+  color: #ffe17d;
+  text-shadow: 0 0 40px #f5c34b;
+}
+
+.ball-result-six .ball-result-icon {
+  animation: ball-result-bounce 700ms ease infinite alternate;
+}
+
+.ball-result-four .ball-result-value {
+  color: #f7d68d;
+}
+
+.ball-result-wicket .ball-result-content {
+  background: linear-gradient(145deg, #59272b, #281116);
+  border-color: #ff777777;
+}
+
+.ball-result-wicket .ball-result-value,
+.ball-result-wicket .ball-result-icon {
+  color: #ff8888;
+  text-shadow: 0 0 30px #f55a5a55;
+}
+
+.ball-result-wicket .ball-result-decoration span {
+  background: #ff7777;
+}
+
+@keyframes ball-result-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ball-result-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.65) translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes ball-result-number {
+  0% { transform: scale(0.5) rotate(-10deg); }
+  65% { transform: scale(1.15) rotate(3deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@keyframes ball-result-bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ball-result,
+  .ball-result-content,
+  .ball-result-value,
+  .ball-result-six .ball-result-icon {
+    animation: none;
+  }
+}

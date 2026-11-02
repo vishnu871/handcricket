@@ -1,0 +1,156 @@
+
+.match-controls {
+  padding: 25px;
+  border: 1px solid #ffffff20;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #173729, #0d241a);
+  color: white;
+}
+
+.match-controls-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  color: #edc46f;
+}
+
+.match-controls-heading span {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #a6bca9;
+}
+
+.match-controls-heading h3 {
+  margin: 7px 0 0;
+  font-size: 17px;
+  letter-spacing: 1px;
+}
+
+.match-number-selector {
+  padding: 18px;
+  margin-top: 15px;
+  border: 1px solid #ffffff18;
+  border-radius: 12px;
+  background: #071b12;
+}
+
+.match-number-player {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #edc46f;
+}
+
+.match-number-player div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.match-number-player strong {
+  color: white;
+  font-size: 13px;
+}
+
+.match-number-player span {
+  color: #a6bca9;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.match-number-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 17px;
+}
+
+.match-number-grid button {
+  min-width: 0;
+  aspect-ratio: 1;
+  border: 1px solid #ffffff25;
+  border-radius: 9px;
+  background: #173527;
+  color: white;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.match-number-grid button:hover {
+  border-color: #edc46f;
+  transform: translateY(-2px);
+}
+
+.match-number-grid button.selected {
+  background: #edc46f;
+  border-color: #edc46f;
+  color: #172519;
+}
+
+.match-play-button,
+.match-innings-break button,
+.match-completed button {
+  width: 100%;
+  min-height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  border: 0;
+  border-radius: 9px;
+  background: linear-gradient(110deg, #d4a64e, #f3d58a);
+  color: #182316;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+}
+
+.match-play-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.match-innings-break,
+.match-completed {
+  text-align: center;
+  padding: 35px 25px;
+}
+
+.match-innings-break h3,
+.match-completed h3 {
+  margin: 0;
+  color: #edc46f;
+  font-size: 22px;
+}
+
+.match-innings-break p,
+.match-completed p {
+  margin: 13px 0;
+  color: #b5c9b9;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+  .match-controls {
+    padding: 17px;
+  }
+
+  .match-number-selector {
+    padding: 12px;
+  }
+
+  .match-number-grid {
+    gap: 5px;
+  }
+
+  .match-number-grid button {
+    border-radius: 6px;
+    font-size: 14px;
+  }
+}
